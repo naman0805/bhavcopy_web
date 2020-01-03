@@ -30,9 +30,20 @@
 </head>
 <body>
 <div class="container">
-<h2>BSE Bhavcopy</h2>
-<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
+	<h2>BSE Bhavcopy, ${date} </h2><br>
+<!--input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name"> -->
 
+<form method='post' action='search'>
+<input type="text" class="form-control" id="search_text" name='search_text' placeholder="Search for Security names." title="Type in a name">
+<br>    
+<input type='submit' value='Submit' /> <a href=".">Back to Home</a>
+</form>
+
+% if len(data)==0:
+	<br>
+	No Records Found
+% endif
+<br>
 <table id="myTable" class="table table-striped">
   <thead>
   <tr>
@@ -79,7 +90,10 @@ function myFunction() {
 }
 
 $(document).ready(function() {
-    $('#myTable').DataTable();
+    $('#myTable').DataTable( {
+   // "sDom": '<"top"i>rt<"bottom"flp><"clear">'
+    "searching": false
+  } );
 } );
 
 </script>
